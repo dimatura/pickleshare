@@ -4,6 +4,7 @@ import os
 from pickleshare import PickleShareDB
 
 def test_pickleshare(tmpdir):
+    import pdb; pdb.set_trace()
     db = PickleShareDB(tmpdir)
     db.clear()
     print("Should be empty:",db.items())
@@ -52,3 +53,7 @@ def test_stress(tmpdir):
         sys.stdout.flush()
         if i % 10 == 0:
             db.uncache()
+
+if __name__ == "__main__":
+    #test_pickleshare('tmpdb')
+    test_stress('tmpdb')

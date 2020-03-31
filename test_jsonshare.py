@@ -49,7 +49,7 @@ def test_stress(tmpdir):
                 time.sleep(0.02)
 
             db[str(j)] = db.get(str(j), []) + [(i, j, "proc %d" % os.getpid())]
-            db.hset("hash", j, db.hget("hash", j, 15) + 1)
+            db.hset("hash", str(j), db.hget("hash", j, 15) + 1)
 
         print(i, end=" ")
         sys.stdout.flush()
@@ -58,4 +58,5 @@ def test_stress(tmpdir):
 
 
 if __name__ == "__main__":
-    test_jsonshare('tmpdb')
+    #test_jsonshare('tmpdb')
+    test_stress('tmpdb')

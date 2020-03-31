@@ -116,6 +116,7 @@ class JsonShareDB(collections_abc.MutableMapping):
 
     def __setitem__(self, key, value):
         """ db['key'] = 5 """
+        #print('setting {} to {}'.format(key, value))
         fil = self.root / key
         parent = fil.parent
         if parent and not parent.is_dir():
@@ -173,7 +174,7 @@ class JsonShareDB(collections_abc.MutableMapping):
             try:
                 all.update(self[f])
             except KeyError:
-                print("Corrupt", f, "deleted - hset is not threadsafe!")
+                #print("Corrupt", f, "deleted - hset is not threadsafe!")
                 del self[f]
 
             self.uncache(f)
@@ -203,6 +204,7 @@ class JsonShareDB(collections_abc.MutableMapping):
 
     def __delitem__(self, key):
         """ del db["key"] """
+        #print("del {}".format(key))
         fil = self.root / key
         self.cache.pop(fil, None)
         try:
